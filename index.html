@@ -1,46 +1,31 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title> Validação de E-mail com JavaScript</title>
-<script language="Javascript">
-function validacaoEmail(field) {
-usuario = field.value.substring(0, field.value.indexOf("@"));
-dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
-if ((usuario.length >=1) &&
-    (dominio.length >=3) && 
-    (usuario.search("@")==-1) && 
-    (dominio.search("@")==-1) &&
-    (usuario.search(" ")==-1) && 
-    (dominio.search(" ")==-1) &&
-    (dominio.search(".")!=-1) &&      
-    (dominio.indexOf(".") >=1)&& 
-    (dominio.lastIndexOf(".") < dominio.length - 1)) {
-document.getElementById("msgemail").innerHTML="E-mail válido";
-alert("email valido");
+<script type="text/javascript">
+function verifica() {
+  if (document.forms[0].email.value.length == 0) {
+    alert('Por favor, informe o seu EMAIL.');
+	document.frmEnvia.email.focus();
+    return false;
+  }
+  return true;
 }
-else{
-document.getElementById("msgemail").innerHTML="<font color='red'>Email inválido </font>";
-alert("E-mail invalido");
-}
+ 
+function checarEmail(){
+if( document.forms[0].email.value=="" 
+   || document.forms[0].email.value.indexOf('@')==-1 
+     || document.forms[0].email.value.indexOf('.')==-1 )
+	{
+	   alert( "Por favor, informe um E-MAIL válido!" );
+	   return false;
+	}
 }
 </script>
 </head>
 <body>
-<form name="f1">
-<h3> Validação de E-mail com JavaScript</h3>
-<hr color='gray'>
-<table>
-<tr>
-<td>
-E-mail:
-<input type="text" name="email" onblur="validacaoEmail(f1.email)"  maxlength="60" size='65'>
-</td>
-<td>
-<div id="msgemail"></div>
-</td>
-</tr>
-</table>
-<hr color='gray'>
+<form method="post" action="" onSubmit="return ( verifica() )" name="frmEnvia">
+   <label for="email">E-mail: </label>
+   <input name="email" type="text" class="input" id="email" onblur="checarEmail();" />
+   <input name="submit" type="submit" value=" ENVIAR " />
 </form>
 </body>
 </html>
