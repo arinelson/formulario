@@ -1,5 +1,5 @@
 function verifica() {
-  if (document.forms[0].email.value.length == 0) {
+  if (document.frmEnvia.email.value.length == 0) {
     alert('Por favor, informe o seu EMAIL.');
 	document.frmEnvia.email.focus();
     return false;
@@ -8,9 +8,9 @@ function verifica() {
 }
  
 function checarEmail(){
-if( document.forms[0].email.value=="" 
-   || document.forms[0].email.value.indexOf('@')==-1 
-     || document.forms[0].email.value.indexOf('.')==-1 )
+if( document.frmEnvia.email.value=="" 
+   || document.frmEnvia.email.value.indexOf('@')==-1 
+     || document.frmEnvia.email.value.indexOf('.')==-1 )
 	{
 	   alert("Por favor, informe um E-MAIL válido!");
 	   return false;
@@ -21,10 +21,12 @@ function validarSenha(){
 	senha1 = document.frmEnvia.senha1.value
 	senha2 = document.frmEnvia.senha2.value
 
-	if(senha1 == senha2){
-		alert("SENHAS IGUAIS")
+	if(senha1 == "" || senha2 == ""){
+		alert("Senha não preenchida!")
 	}
-	else{
-		alert("SENHAS DIFERENTES")
+
+	 else if(senha1 != senha2){
+		alert("Senhas diferentes")
 	}
+	
 }
